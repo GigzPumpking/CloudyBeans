@@ -17,3 +17,17 @@ let config = {
 }
 
 let game = new Phaser.Game(config);
+
+let money = 0;
+
+let moneyConfig = {
+    fontFamily: 'Courier',
+    fontSize: '20px',
+    color: '#843605',
+    align: 'right',
+    padding: {
+        top: 5,
+        bottom: 5,
+    },
+    fixedWidth: 100
+}
