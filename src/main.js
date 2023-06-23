@@ -1,7 +1,7 @@
 let config = {
     type: Phaser.WEBGL,
-    width: 960,
-    height: 540,
+    width: 700,
+    height: 360,
     scale: {
         mode: Phaser.Scale.FIT, 
         autoCenter: Phaser.Scale.RESIZE
@@ -13,7 +13,7 @@ let config = {
             fps: 60
         }
     },
-    scene: [ Title ]
+    scene: [ Play, Title ]
 }
 
 let game = new Phaser.Game(config);
