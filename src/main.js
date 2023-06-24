@@ -13,10 +13,13 @@ let config = {
             fps: 60
         }
     },
-    scene: [ Play, Title ]
+    scene: [ Play, Title, Upgrades ]
 }
 
 let game = new Phaser.Game(config);
+
+let centerX = game.config.width/2;
+let centerY = game.config.height/2;
 
 let money = 0;
 
@@ -31,3 +34,11 @@ let moneyConfig = {
     },
     fixedWidth: 100
 }
+
+const textConfig = Object.assign({}, moneyConfig, { fontSize: '28px', backgroundColor: '#F0000C', color: '#000', align: 'center' });
+
+const buttonConfig = Object.assign({}, moneyConfig, { fontSize: '16px', color: '#000', align: 'center', fixedWidth: 150 });
+
+maxedUpgrades = [];
+
+let keyESC;

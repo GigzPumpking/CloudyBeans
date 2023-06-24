@@ -28,6 +28,14 @@ class Play extends Phaser.Scene {
         this.add.image(60, 15, 'beandollar').setScale(0.1);
         this.add.image(game.config.width/2, game.config.height/2, 'building').setScale(1.01);
 
+        //Create an upgrade button
+        this.upgradeButton = this.add.text(60, 2, 'Upgrade', buttonConfig).setInteractive({
+            useHandCursor: true,
+        });
+        this.upgradeButton.on('pointerdown', () => {
+            this.scene.pause().launch('upgradesScene');
+        });
+
     }
 
     update() {
