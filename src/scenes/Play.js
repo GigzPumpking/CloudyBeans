@@ -6,7 +6,8 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.path = './assets/';
         this.load.image('bean', 'bean.png');
-        this.load.image('beandollar', 'beandollar.png');
+        this.load.image('beandollar', 'beanDollar.png');
+        this.load.image('building', 'beanFacility.png');
     }
         
 
@@ -25,6 +26,7 @@ class Play extends Phaser.Scene {
         this.moneyCounter = this.add.text(-70, 0, money, moneyConfig);
         //place bean dollar next to money counter
         this.add.image(60, 15, 'beandollar').setScale(0.1);
+        this.add.image(game.config.width/2, game.config.height/2, 'building').setScale(1.01);
 
     }
 
