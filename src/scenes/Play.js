@@ -6,11 +6,10 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.path = './assets/';
         this.load.image('bean', 'bean.png');
-        this.load.image('beandollar', 'beanDollar.png');
+        this.load.image('beandollar', 'beandollar.png');
         this.load.image('building', 'beanFacility.png');
     }
         
-
     create() {
         //Bean Spawn Timer
         this.time.addEvent({
