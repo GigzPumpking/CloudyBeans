@@ -4,9 +4,10 @@ class Bean extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.scene = scene;
-        this.value = 1;
+        this.value = beansValue;
+
         this.scale = 1.5;
-        this.body.setVelocity(20, 100);
+        this.body.setVelocity(20, Math.random() * 120 + 80);
         this.rotation;
         this.setInteractive({
             useHandCursor: true,

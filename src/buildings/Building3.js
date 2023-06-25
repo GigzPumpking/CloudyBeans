@@ -1,11 +1,11 @@
-class Building1 extends Building {
+class Building3 extends Building {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
-        this.delay = 1000;
+        this.delay = 500;
         this.value = 0;
-        this.upgradeCost = b1UnlockCost;
-        this.upgradeCostIncrease = 10;
-        this.valueIncrease = 1;
+        this.upgradeCost = b3UnlockCost;
+        this.upgradeCostIncrease = this.upgradeCost;
+        this.valueIncrease = 10;
 
         //Timer for money generation
         this.scene.time.addEvent({
@@ -18,5 +18,6 @@ class Building1 extends Building {
 
     update() {
         super.update();
+        this.upgradeCostIncrease = this.upgradeCost;
     }
 }
