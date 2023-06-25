@@ -11,6 +11,9 @@ class Play extends Phaser.Scene {
     }
         
     create() {
+        beans = this.add.group({
+            runChildUpdate: true
+        });
         //Bean Spawn Timer
         this.time.addEvent({
             delay: 1000,
@@ -20,7 +23,6 @@ class Play extends Phaser.Scene {
         });
         
         this.cameras.main.setBackgroundColor('#FACADE');
-        this.beans = this.add.group();
 
         this.moneyCounter = this.add.text(-70, 0, money, moneyConfig);
         //place bean dollar next to money counter
@@ -38,35 +40,16 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        this.beans.rotate(0.05);
         this.moneyCounter.text = money;
-
-    }
-
-    removeItem(pointer, localX, localY, event) {
-        /*let sceneContext = this.scene;  // get scene context before we kill the object
-        sceneContext.playPop();         // play pop sound*/
-
-        money += 1;
-        this.destroy();             // destroy the child obj
-
-        // check for special guest if all circles are gone
-        /*if(!sceneContext.circles.getLength()) {
-            sceneContext.sparkJoy();
-        }*/
     }
 
     beanCreate() {
         let beanSet = ['bean'];
         let randX = Math.random() * game.config.width;
         let bean = new Bean(this, randX, -10, beanSet[0]);
-        let randRotation = Math.random() * 360;
-        bean.rotation += randRotation;
-        bean.setInteractive({
-            useHandCursor: true,
-        });
-        bean.on('pointerdown', this.removeItem);
-        this.beans.add(bean);
+        bean.rotation = Math.random() * 360;
+
+        beans.add(bean);
     }
 
 }

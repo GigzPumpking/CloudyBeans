@@ -22,6 +22,7 @@ let centerX = game.config.width/2;
 let centerY = game.config.height/2;
 
 let money = 0;
+let beans = null;
 
 let moneyConfig = {
     fontFamily: 'Courier',

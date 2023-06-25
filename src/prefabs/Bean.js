@@ -6,12 +6,25 @@ class Bean extends Phaser.GameObjects.Sprite {
         this.scene = scene;
         this.value = 1;
         this.scale = 1;
-        this.body.setVelocity(0, 100);
+        this.body.setVelocity(20, 100);
+        this.rotation;
+        this.setInteractive({
+            useHandCursor: true,
+        });
+        this.on('pointerdown', this.beanClick);
     }
 
     update() {
         if (this.y > game.config.height) {
             this.destroy();
+            beans.remove(this);
         }
+        this.rotation += 0.05;
+    }
+
+    beanClick() {
+        money += this.value;
+        this.destroy();
+        beans.remove(this);
     }
 }
