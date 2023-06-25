@@ -11,6 +11,7 @@ class Building extends Phaser.GameObjects.Sprite {
         this.upgradeCost;
         this.upgradeCostIncrease;
         this.valueIncrease;
+        this.scale = 0.25;
     }
 
     moneyGenerate() {

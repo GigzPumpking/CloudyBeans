@@ -51,19 +51,19 @@ class Play extends Phaser.Scene {
     buildingUpdate(building) {
         if (building == 'Bean Building 1') {  
             if (!this.building1){
-                this.building1 = new Building1(this, centerX/2 - 200, centerY/2, 'building').setOrigin(0, 0);
+                this.building1 = new Building1(this, centerX/2 - 200, centerY/2 + 50, 'building').setOrigin(0, 0);
             }
             this.building1.upgrade();
         } 
         else if (building == 'Bean Building 2') {
             if (!this.building2){
-                this.building2 = new Building2(this, centerX/2, centerY/2, 'building').setOrigin(0, 0);
+                this.building2 = new Building2(this, centerX/2, centerY/2 + 50, 'building').setOrigin(0, 0);
             }
             this.building2.upgrade();
         }
         else if (building == 'Bean Building 3') {
             if (!this.building3){
-                this.building3 = new Building3(this, centerX/2 + 200, centerY/2, 'building').setOrigin(0, 0);
+                this.building3 = new Building3(this, centerX/2 + 200, centerY/2 + 50, 'building').setOrigin(0, 0);
             }
             this.building3.upgrade();
         }
