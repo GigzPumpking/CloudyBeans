@@ -8,9 +8,12 @@ class Play extends Phaser.Scene {
         this.load.image('bean', 'bean.png');
         this.load.image('beandollar', 'beandollar.png');
         this.load.image('building', 'beanFacility.png');
+        this.load.image('background', 'background.jpg');
     }
         
     create() {
+        //Create background
+        this.background = this.add.tileSprite(0, 0, 2160, 1620, 'background').setOrigin(0, 0).setScale(0.5);
         clickCost = 10;
         this.building1 = null;
         this.building2 = null;
