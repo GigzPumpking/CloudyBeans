@@ -11,6 +11,9 @@ class Play extends Phaser.Scene {
     }
         
     create() {
+
+        this.building = null;
+
         beans = this.add.group({
             runChildUpdate: true
         });
@@ -27,16 +30,23 @@ class Play extends Phaser.Scene {
         this.moneyCounter = this.add.text(-70, 0, money, moneyConfig);
         //place bean dollar next to money counter
         this.add.image(60, 15, 'beandollar').setScale(0.1);
-        this.add.image(game.config.width/2, game.config.height/2, 'building').setScale(1.01);
 
         //Create an upgrade button
         this.upgradeButton = this.add.text(60, 2, 'Upgrade', buttonConfig).setInteractive({
             useHandCursor: true,
         });
         this.upgradeButton.on('pointerdown', () => {
-            this.scene.pause().launch('upgradesScene');
+            this.scene.launch('upgradesScene');
         });
 
+    }
+
+    buildingUpdate(building) {
+        if (building == 'Bean Building 1') {  
+            if (this.building == null){
+                this.building = new Building(this, centerX/2, centerY/2, 'building').setOrigin(0, 0);
+            }
+        }
     }
 
     update() {

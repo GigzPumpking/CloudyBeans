@@ -9,6 +9,8 @@ class Upgrades extends Phaser.Scene {
     }
 
     create() {
+        this.playScene = this.scene.get('playScene');
+
         this.verticalSpacing = -100;
         this.potentialUpgrades = ['Bean Building 1', 'Bean Building 2', 'Bean Building 3'];
 
@@ -29,7 +31,7 @@ class Upgrades extends Phaser.Scene {
             this.verticalSpacing += 50;
         }
         let Exit = new Button(centerX, centerY + this.verticalSpacing, 'Exit', this, () => {
-            this.scene.resume('playScene').stop();
+            this.scene.stop();
         })
 
         // Escape Key to Exit
@@ -38,7 +40,7 @@ class Upgrades extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyESC)) {
-            this.scene.resume('playScene').stop();
+            this.scene.stop();
         }
     }
 
@@ -48,7 +50,7 @@ class Upgrades extends Phaser.Scene {
             upgradeButton = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 1', this, () => {
 
                 // Insert code to upgrade or unlock bean building 1
-
+                this.playScene.buildingUpdate(upgrade);
             })
         }
         else if (upgrade == 'Bean Building 2') {

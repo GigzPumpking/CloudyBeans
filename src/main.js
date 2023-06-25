@@ -1,10 +1,9 @@
 let config = {
     type: Phaser.WEBGL,
-    width: 700,
-    height: 360,
+    width: 1200,
+    height: 600,
     scale: {
-        mode: Phaser.Scale.FIT, 
-        autoCenter: Phaser.Scale.RESIZE
+        autoCenter: Phaser.Scale.CENTER
     },
     physics: {
         default: 'arcade',
@@ -36,7 +35,7 @@ let moneyConfig = {
     fixedWidth: 100
 }
 
-const textConfig = Object.assign({}, moneyConfig, { fontSize: '28px', backgroundColor: '#F0000C', color: '#000', align: 'center' });
+const textConfig = Object.assign({}, moneyConfig, { fontSize: '28px', backgroundColor: '#F0000C', color: '#000', align: 'center', fixedWidth: 0 });
 
 const buttonConfig = Object.assign({}, moneyConfig, { fontSize: '16px', color: '#000', align: 'center', fixedWidth: 150 });
 
