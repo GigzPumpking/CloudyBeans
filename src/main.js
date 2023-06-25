@@ -34,7 +34,7 @@ let b3UnlockCost = 100;
 let moneyConfig = {
     fontFamily: 'Courier',
     fontSize: '20px',
-    color: '#843605',
+    color: '#FFFFFF',
     align: 'right',
     padding: {
         top: 5,

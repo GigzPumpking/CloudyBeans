@@ -33,6 +33,7 @@ class Play extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#FACADE');
 
         this.moneyCounter = this.add.text(10, 0, money, moneyConfig);
+        
         //place bean dollar next to money counter
         this.moneySpacing = this.moneyCounter.x + this.moneyCounter.width + 30;
         this.moneyCounterIcon = this.add.image(this.moneySpacing, 15, 'beandollar').setScale(0.1);
