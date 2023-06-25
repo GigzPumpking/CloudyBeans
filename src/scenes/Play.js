@@ -59,14 +59,14 @@ class Play extends Phaser.Scene {
     beanCreate() {
         let beanSet = ['bean'];
         let randX = Math.random() * game.config.width;
-        let randY = Math.random() * game.config.height;
-        let bean = this.beans.create(randX, randY, beanSet[0]);
+        let bean = new Bean(this, randX, -10, beanSet[0]);
         let randRotation = Math.random() * 360;
         bean.rotation += randRotation;
         bean.setInteractive({
             useHandCursor: true,
         });
         bean.on('pointerdown', this.removeItem);
+        this.beans.add(bean);
     }
 
 }
