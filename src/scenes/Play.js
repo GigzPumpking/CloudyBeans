@@ -11,8 +11,9 @@ class Play extends Phaser.Scene {
     }
         
     create() {
-
-        this.building = null;
+        this.building1 = null;
+        this.building2 = null;
+        this.building3 = null;
 
         beans = this.add.group({
             runChildUpdate: true
@@ -43,9 +44,10 @@ class Play extends Phaser.Scene {
 
     buildingUpdate(building) {
         if (building == 'Bean Building 1') {  
-            if (this.building == null){
-                this.building = new Building(this, centerX/2, centerY/2, 'building').setOrigin(0, 0);
+            if (!this.building1){
+                this.building1 = new Building1(this, centerX/2, centerY/2, 'building').setOrigin(0, 0);
             }
+            this.building1.upgrade();
         }
     }
 

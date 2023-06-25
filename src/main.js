@@ -39,6 +39,6 @@ const textConfig = Object.assign({}, moneyConfig, { fontSize: '28px', background
 
 const buttonConfig = Object.assign({}, moneyConfig, { fontSize: '16px', color: '#000', align: 'center', fixedWidth: 150 });
 
-maxedUpgrades = [];
+maxedUpgrades = []; 
 
 let keyESC;

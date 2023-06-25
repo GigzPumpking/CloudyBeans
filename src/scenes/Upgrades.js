@@ -9,7 +9,14 @@ class Upgrades extends Phaser.Scene {
     }
 
     create() {
-        this.playScene = this.scene.get('playScene');
+        this.play = this.scene.get('playScene');
+
+        this.upgradeButton1 = null;
+        this.upgradeButton2 = null;
+        this.upgradeButton3 = null;
+
+        if (!this.play.building1) this.upgradeCost1 = 10;
+        else this.upgradeCost1 = this.play.building1.upgradeCost;
 
         this.verticalSpacing = -100;
         this.potentialUpgrades = ['Bean Building 1', 'Bean Building 2', 'Bean Building 3'];
@@ -42,26 +49,44 @@ class Upgrades extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(keyESC)) {
             this.scene.stop();
         }
+        this.updateCost(1, this.play.building1, this.upgradeCost1, this.upgradeButton1);
+    }
+
+    updateCost(num, building, cost, button) {
+        if (!building) cost = 10;
+        else cost = building.upgradeCost;
+
+        // Update button text
+        if (button) {
+            button.updateText('Bean Building ' + num + ': ' + cost);
+        }
+
+        if (money < cost && button.color != 'red') {
+            button.redButton();
+        } else if (money >= cost && button.color != 'green') {
+            button.greenButton();
+        }
     }
 
     upgradeSelection(upgrade) {
-        let upgradeButton;
         if (upgrade == 'Bean Building 1') { 
-            upgradeButton = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 1', this, () => {
+            this.upgradeButton1 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 1: ' + this.upgradeCost1, this, () => {
 
                 // Insert code to upgrade or unlock bean building 1
-                this.playScene.buildingUpdate(upgrade);
+                if (money >= this.upgradeCost1) {
+                    this.play.buildingUpdate(upgrade);
+                }
             })
         }
         else if (upgrade == 'Bean Building 2') {
-            upgradeButton = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 2', this, () => {
+            this.upgradeButton2 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 2', this, () => {
                     
                 // Insert code to upgrade or unlock bean building 2
     
             })
         }
         else if (upgrade == 'Bean Building 3') {
-            upgradeButton = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 3', this, () => {
+            this.upgradeButton3 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 3', this, () => {
                 
                 // Insert code to upgrade or unlock bean building 3
 
