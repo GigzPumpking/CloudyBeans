@@ -28,4 +28,8 @@ class Button {
     updateText(text) {
         this.button.setText(text);
     }
+
+    destroy() {
+        this.button.destroy();
+    }
 }

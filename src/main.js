@@ -26,7 +26,7 @@ let beansValue = 1;
 
 // Initial unlock costs HERE
 
-let clickCost = 10;
+let clickCost;
 let b1UnlockCost = 10;
 let b2UnlockCost = 50;
 let b3UnlockCost = 100;
