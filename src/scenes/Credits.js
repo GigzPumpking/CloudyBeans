@@ -35,7 +35,7 @@ class Credits extends Phaser.Scene {
         this.add.text(game.config.width/2, 2*game.config.height/9, 'Game Engine: Phaser 3.60', smallConfig).setOrigin(0.5).setColor('#F1EA2B');
 
         // People involved
-        this.add.text(game.config.width/2, 3*game.config.height/9, 'Daphne Cheng: Initial Concept Art/Design', smallConfig).setWordWrapWidth(game.config.width / 1.5).setColor('#EAAD2B').setAlign('center').setOrigin(0.5);
+        this.add.text(game.config.width/2, 3*game.config.height/9, 'Daphne Cheng: Initial Concept Art/Design', smallConfig).setWordWrapWidth(game.config.width / 1.5).setColor('#2B9AF1').setAlign('center').setOrigin(0.5);
         this.add.text(game.config.width/3.5, 4.15*game.config.height/9, 'Abel Goy: Design/Programming/Production', smallConfig).setWordWrapWidth(game.config.width / 1.5).setColor('#EA2B2B').setAlign('center').setOrigin(0.5);
         this.add.text(game.config.width/1.3, 4.15*game.config.height/9, 'Hung Nguyen: Programming/Design', smallConfig).setWordWrapWidth(game.config.width / 2).setAlign('center').setColor('#EA2B2B').setOrigin(0.5);
 
