@@ -17,13 +17,15 @@ class Pause extends Phaser.Scene {
 
         let pauseConfig = {
             fontFamily: 'Courier',
-            fontSize: '28px',
+            fontSize: '48px',
             backgroundColor: '#F0000C',
             color: '#000',
             align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
+                right: 5,
+                left: 5,
             },
             fixedWidth: 0
         }
@@ -43,8 +45,8 @@ class Pause extends Phaser.Scene {
             this.scene.resume('playScene').stop();
         })
 
-        Restart.button.setScale(2);
-        Resume.button.setScale(2);
+        Restart.button.setFontSize(36);
+        Resume.button.setFontSize(36);
 
         Restart.blackButton();
         Resume.blackButton();

@@ -53,7 +53,7 @@ class Credits extends Phaser.Scene {
             this.scene.start('titleScene');
         });
         escapeButton.whiteButton();
-        escapeButton.button.setScale(2);
+        escapeButton.button.setFontSize(30);
 
         this.sound.stopAll();
         this.credits = this.sound.add('credits', {volume: 0.8, loop: true});

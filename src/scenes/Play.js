@@ -112,6 +112,16 @@ class Play extends Phaser.Scene {
         this.upgradeButton.whiteButton();
         this.upgradeButton.button.setFontSize(36);
 
+        //Create a pause button
+        this.pauseButton = new Button(this.moneySpacing + 70, 15, 'Pause', this, () => {
+            if (this.scene.isActive('upgradesScene')) {
+                this.scene.stop('upgradesScene');
+            }
+            this.scene.pause().launch('pauseScene');
+        });
+        this.pauseButton.whiteButton();
+        this.pauseButton.button.setFontSize(24);
+
         //Create a UFO on a random interval
         this.time.addEvent({
             delay: 22500,
@@ -173,6 +183,7 @@ class Play extends Phaser.Scene {
         this.moneySpacing = this.moneyCounter.x + this.moneyCounter.width + 30;
         this.moneyCounter.text = money;
         this.moneyCounterIcon.x = this.moneySpacing;
+        this.pauseButton.button.x = this.moneySpacing + 70;
 
 
         this.valueText.text = 'Bean Value: ' + beansValue + ' per click';

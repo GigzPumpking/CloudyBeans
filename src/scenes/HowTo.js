@@ -29,7 +29,7 @@ class HowTo extends Phaser.Scene {
             this.scene.start('titleScene');
         });
         escapeButton.whiteButton();
-        escapeButton.button.setScale(2);
+        escapeButton.button.setFontSize(30);
 
         this.add.text(game.config.width/2, game.config.height/3 + 325, 'Press to return to the menu', menuConfig).setOrigin(0.5);
     }
