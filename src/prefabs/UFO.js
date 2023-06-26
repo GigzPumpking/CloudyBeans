@@ -19,7 +19,7 @@ class UFO extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        if (this.x > game.config.width) {
+        if ((this.x > game.config.width) && (!this.dead)) {
             this.destroy();
         }
 
