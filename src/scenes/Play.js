@@ -34,6 +34,15 @@ class Play extends Phaser.Scene {
 
         // load button confirm sound
         this.load.audio('confirm', 'sound/bean_confirm.wav');
+
+        // load UFO images
+        this.load.image('ufo1', 'UFO1.png');
+        this.load.image('ufo2', 'UFO2.png');
+
+        // load money sounds
+        this.load.audio('money1', 'sound/money1.wav');
+        this.load.audio('money2', 'sound/money2.wav');
+        this.load.audio('money3', 'sound/money3.wav');
     }
         
     create() {
@@ -83,6 +92,17 @@ class Play extends Phaser.Scene {
         });
         this.upgradeButton.blackButton();
 
+        //Create a UFO on a random interval
+        this.time.addEvent({
+            delay: 15000,
+            callback: this.ufoCreate,
+            callbackScope: this,
+            loop: true
+        });
+    }
+
+    ufoCreate() {
+        this.ufo = new UFO(this, 0, 100, 'ufo1').setOrigin(0, 0).setScale(0.2);
     }
 
     buildingUpdate(building) {
@@ -152,6 +172,8 @@ class Play extends Phaser.Scene {
             }
             this.scene.pause().launch('pauseScene');
         }
+
+        if (this.ufo) this.ufo.update();
     }
 
 }
