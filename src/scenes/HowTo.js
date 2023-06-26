@@ -22,11 +22,13 @@ class HowTo extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/6, 'How To Play', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/1.35, 8.5*game.config.height/9, 'Press ESC to return to the title screen menu', menuConfig).setOrigin(1.1).setFontSize(22);
 
+        keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+
     }
 
     update() {
-
-        keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-
+        if (Phaser.Input.Keyboard.JustDown(keyESC)) {
+            this.scene.start('titleScene');    
+        }
     }
 }
