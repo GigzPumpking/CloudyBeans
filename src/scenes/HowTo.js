@@ -4,9 +4,9 @@ class HowTo extends Phaser.Scene {
     }
 
     create() {
-        let menuConfig = {
-            fontFamily: 'Fantasy',
-            fontSize: '35px',
+        var menuConfig = {
+            fontFamily: 'Verdana',
+            fontSize: '28px',
             backgroundColor: '#303030',
             color: '#FFFFFF',
             align: 'right',
@@ -16,12 +16,17 @@ class HowTo extends Phaser.Scene {
             },
             fixedWidth: 0
         }
+ 
+        let small
 
         this.add.text(game.config.width/2, game.config.height/6, 'How To Play', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/1.35, 8.5*game.config.height/9, 'Press ESC to return to the title screen menu', menuConfig).setOrigin(1.1).setFontSize(22);
 
     }
 
     update() {
+
+        keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
     }
 }
