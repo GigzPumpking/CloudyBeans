@@ -10,14 +10,20 @@ class Play extends Phaser.Scene {
         this.load.image('building', 'beanFacility.png');
         this.load.image('background', 'background.jpg');
 
+        // load building floors
+        this.load.image('floor1', 'floor1.png');
+        this.load.image('floor2', 'floor2.png');
+        this.load.image('floor3', 'floor3.png');
+
         // load clicking sounds
         this.load.audio('click1', 'sound/click1.wav');
         this.load.audio('click2', 'sound/click2.wav');
         this.load.audio('click3', 'sound/click3.wav');
 
         // load music
-        this.load.audio('level1', 'sound/bean_lvl1.mp3');
-        this.load.audio('level3', 'sound/bean_lvl3.mp3');
+        this.load.audio('level1', 'sound/bean_level1.mp3');
+        this.load.audio('level2', 'sound/bean_level2.mp3');
+        this.load.audio('level3', 'sound/bean_level3.mp3');
 
         // load upgrade sound
         this.load.audio('upgrade', 'sound/upgrade.wav');
@@ -31,13 +37,14 @@ class Play extends Phaser.Scene {
     }
         
     create() {
+        money = 0;
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
         // level music
         this.level1 = this.sound.add('level1', {volume: 0.3, loop: true});
         this.level1.play();
 
-        //this.level2 = this.sound.add('level2', {volume: 0.3, loop: true});
+        this.level2 = this.sound.add('level2', {volume: 0.3, loop: true});
 
         this.level3 = this.sound.add('level3', {volume: 0.3, loop: true});
 
@@ -47,6 +54,9 @@ class Play extends Phaser.Scene {
         this.building1 = null;
         this.building2 = null;
         this.building3 = null;
+
+        /*// Add a building sprite to the middle
+        this.building = this.add.sprite(centerX/2 - 150, centerY/2 - 70, 'building').setOrigin(0, 0).setScale(0.325);*/
 
         beans = this.add.group({
             runChildUpdate: true
@@ -79,22 +89,24 @@ class Play extends Phaser.Scene {
         this.sound.play('upgrade', { volume: 0.5 });
         if (building == 'Bean Building 1') {  
             if (!this.building1){
-                this.building1 = new Building1(this, centerX/2 - 200, centerY/2 + 50, 'building').setOrigin(0, 0);
+                this.building1 = new Building1(this, centerX/2 - 50 - 25, centerY/2 + 50 + 300, 'floor1').setOrigin(0, 0);
             }
             this.building1.upgrade();
             this.building1.valueIncrease += 1;
         } 
         else if (building == 'Bean Building 2') {
             if (!this.building2){
-                this.building2 = new Building2(this, centerX/2, centerY/2 + 50, 'building').setOrigin(0, 0);
+                this.building2 = new Building2(this, centerX/2 - 34 - 25, centerY/2 - 28 + 300, 'floor2').setOrigin(0, 0);
+                this.level1.stop();
+                this.level2.play();
             }
             this.building2.upgrade();
             this.building2.valueIncrease += 5;
         }
         else if (building == 'Bean Building 3') {
             if (!this.building3){
-                this.building3 = new Building3(this, centerX/2 + 200, centerY/2 + 50, 'building').setOrigin(0, 0);
-                this.level1.stop();
+                this.building3 = new Building3(this, centerX/2 - 47 - 25, centerY/2 - 260 + 300, 'floor3').setOrigin(0, 0);
+                this.level2.stop();
                 this.level3.play();
             }
             this.building3.upgrade();
@@ -114,7 +126,7 @@ class Play extends Phaser.Scene {
         this.moneySpacing = this.moneyCounter.x + this.moneyCounter.width + 30;
         this.moneyCounter.text = money;
         this.moneyCounterIcon.x = this.moneySpacing;
-        this.upgradeButton.x = this.moneySpacing + 10;
+        this.upgradeButton.button.x = this.moneySpacing + 75;
     }
 
     beanCreate() {

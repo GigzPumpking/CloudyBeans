@@ -35,6 +35,7 @@ class Pause extends Phaser.Scene {
             var sceneRestart = this.scene.get('playScene');
             // stop playing all sounds
             sceneRestart.level1.stop();
+            sceneRestart.level2.stop();
             sceneRestart.level3.stop();
             sceneRestart.scene.restart();
         })
