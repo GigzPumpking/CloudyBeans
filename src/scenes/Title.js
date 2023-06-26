@@ -3,7 +3,16 @@ class Title extends Phaser.Scene {
         super('titleScene');
     }
 
+    preload() {
+        // load background image
+        this.load.image('titlebackground', './assets/titlebackground.jpg');
+    }
+
     create() {
+        // place background
+        this.background = this.add.tileSprite(0, 0, 2160, 1620, 'titlebackground').setOrigin(0, 0);
+        this.background.scale /= 1.625;
+
         let menuConfig = {
             fontFamily: 'Fantasy',
             fontSize: '35px',
@@ -29,9 +38,7 @@ class Title extends Phaser.Scene {
             fixedWidth: 0
         }
  
-        // menu text
-        this.add.text(game.config.width/2, game.config.height/6, 'Beans of Production', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Press SPACE to start', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2 + 235, 20, 'Press SPACE to start', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/5, game.config.height/1.15, 'Press C for credits', smallConfig).setOrigin(0.5);
         this.add.text(game.config.width/1.25, game.config.height/1.15, 'Press H for How to play', smallConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/1.05, 'Made in Phaser 3.60', smallConfig).setOrigin(0.5);
