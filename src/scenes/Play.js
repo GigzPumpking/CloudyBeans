@@ -51,7 +51,7 @@ class Play extends Phaser.Scene {
 
         //Create background
         this.background = this.add.tileSprite(0, 0, 2160, 1620, 'background').setOrigin(0, 0).setScale(0.5);
-        clickCost = 10;
+        clickCost = 5;
         this.building1 = null;
         this.building2 = null;
         this.building3 = null;

@@ -1,11 +1,11 @@
 class Building2 extends Building {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
-        this.delay = 750;
+        this.delay = 5000;
         this.value = 0;
         this.upgradeCost = b2UnlockCost;
         this.upgradeCostIncrease = 50;
-        this.valueIncrease = 5;
+        this.valueIncrease = 7;
         this.location = 70;
         this.floor = 'Floor 2';
 
