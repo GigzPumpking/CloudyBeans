@@ -40,13 +40,18 @@ class Title extends Phaser.Scene {
             },
             fixedWidth: 0
         }
- 
-        this.add.text(game.config.width/2 + 235, 20, 'Press SPACE to start', menuConfig).setOrigin(0.5);
+
+        // Add start button
+        let startButton = new Button(game.config.width/2 + 235, 20, 'CLICK TO START', this, () => {
+            this.scene.start('playScene');
+        });
+        startButton.whiteButton();
+        startButton.button.setScale(2);
+
         this.add.text(game.config.width/5, game.config.height/1.15, 'Press C for credits', smallConfig).setOrigin(0.5);
         this.add.text(game.config.width/1.25, game.config.height/1.15, 'Press H for How to play', smallConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/1.05, 'Made in Phaser 3.60', smallConfig).setOrigin(0.5);
 
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
         keyH = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
 
@@ -54,16 +59,9 @@ class Title extends Phaser.Scene {
         this.title = this.sound.add('title', {volume: 0.017, loop: true});
         this.title.play();
 
-
-
-
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            // Play mode
-            this.scene.start('playScene');    
-        }
 
         if (Phaser.Input.Keyboard.JustDown(keyC)) {
             // Credits mode
