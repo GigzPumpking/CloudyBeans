@@ -58,8 +58,18 @@ class Title extends Phaser.Scene {
         startButton.whiteButton();
         startButton.button.setScale(2);
 
-        this.add.text(game.config.width/5, game.config.height/1.15, 'Press C for credits', smallConfig).setOrigin(0.5);
-        this.add.text(game.config.width/1.25, game.config.height/1.15, 'Press H for How to play', smallConfig).setOrigin(0.5);
+        let creditsButton = new Button(game.config.width/5, game.config.height/1.15, 'CREDITS', this, () => {
+            this.scene.start('creditScene');
+        });
+        creditsButton.whiteButton();
+        creditsButton.button.setStyle(smallConfig);
+
+        let howtoButton = new Button(game.config.width/1.25, game.config.height/1.15, 'HOW TO PLAY', this, () => {
+            this.scene.start('howtoScene');
+        });
+        howtoButton.whiteButton();
+        howtoButton.button.setStyle(smallConfig);
+
         this.add.text(game.config.width/2, game.config.height/1.05, 'Made in Phaser 3.60', smallConfig).setOrigin(0.5);
 
         keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
