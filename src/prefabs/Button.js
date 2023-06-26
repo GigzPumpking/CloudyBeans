@@ -40,6 +40,11 @@ class Button {
         this.button.on('pointerout', () => this.button.setStyle({ fill: '#000000' }));
     }
 
+    whiteButton() {
+        this.button.setStyle({ fill: '#FFFFFF' });
+        this.button.on('pointerout', () => this.button.setStyle({ fill: '#FFFFFF' }));
+    }
+
     redButton() {
         this.button.setStyle({ fill: '#FF0000' });
         this.button.on('pointerout', () => this.button.setStyle({ fill: '#FF0000' }));
