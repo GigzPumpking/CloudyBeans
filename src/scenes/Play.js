@@ -10,6 +10,11 @@ class Play extends Phaser.Scene {
         this.load.image('building', 'beanFacility.png');
         this.load.image('background', 'background.jpg');
 
+        // load building floors
+        this.load.image('floor1', 'floor1.png');
+        this.load.image('floor2', 'floor2.png');
+        this.load.image('floor3', 'floor3.png');
+
         // load clicking sounds
         this.load.audio('click1', 'sound/click1.wav');
         this.load.audio('click2', 'sound/click2.wav');
@@ -32,6 +37,7 @@ class Play extends Phaser.Scene {
     }
         
     create() {
+        money = 0;
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
         // level music
@@ -48,6 +54,9 @@ class Play extends Phaser.Scene {
         this.building1 = null;
         this.building2 = null;
         this.building3 = null;
+
+        /*// Add a building sprite to the middle
+        this.building = this.add.sprite(centerX/2 - 150, centerY/2 - 70, 'building').setOrigin(0, 0).setScale(0.325);*/
 
         beans = this.add.group({
             runChildUpdate: true
@@ -80,14 +89,14 @@ class Play extends Phaser.Scene {
         this.sound.play('upgrade', { volume: 0.5 });
         if (building == 'Bean Building 1') {  
             if (!this.building1){
-                this.building1 = new Building1(this, centerX/2 - 200, centerY/2 + 50, 'building').setOrigin(0, 0);
+                this.building1 = new Building1(this, centerX/2 - 50 - 25, centerY/2 + 50 + 300, 'floor1').setOrigin(0, 0);
             }
             this.building1.upgrade();
             this.building1.valueIncrease += 1;
         } 
         else if (building == 'Bean Building 2') {
             if (!this.building2){
-                this.building2 = new Building2(this, centerX/2, centerY/2 + 50, 'building').setOrigin(0, 0);
+                this.building2 = new Building2(this, centerX/2 - 34 - 25, centerY/2 - 28 + 300, 'floor2').setOrigin(0, 0);
                 this.level1.stop();
                 this.level2.play();
             }
@@ -96,7 +105,7 @@ class Play extends Phaser.Scene {
         }
         else if (building == 'Bean Building 3') {
             if (!this.building3){
-                this.building3 = new Building3(this, centerX/2 + 200, centerY/2 + 50, 'building').setOrigin(0, 0);
+                this.building3 = new Building3(this, centerX/2 - 47 - 25, centerY/2 - 260 + 300, 'floor3').setOrigin(0, 0);
                 this.level2.stop();
                 this.level3.play();
             }
