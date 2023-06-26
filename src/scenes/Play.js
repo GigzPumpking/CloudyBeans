@@ -18,9 +18,28 @@ class Play extends Phaser.Scene {
         // load music
         this.load.audio('level1', 'sound/bean_lvl1.mp3');
         this.load.audio('level3', 'sound/bean_lvl3.mp3');
+
+        // load upgrade sound
+        this.load.audio('upgrade', 'sound/upgrade.wav');
+
+        // load button hover sounds
+        this.load.audio('select1', 'sound/bean_select1.wav');
+        this.load.audio('select2', 'sound/bean_select2.wav');
+
+        // load button confirm sound
+        this.load.audio('confirm', 'sound/bean_confirm.wav');
     }
         
     create() {
+        keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
+        // level music
+        this.level1 = this.sound.add('level1', {volume: 0.3, loop: true});
+        this.level1.play();
+
+        //this.level2 = this.sound.add('level2', {volume: 0.3, loop: true});
+
+        this.level3 = this.sound.add('level3', {volume: 0.3, loop: true});
 
         //Create background
         this.background = this.add.tileSprite(0, 0, 2160, 1620, 'background').setOrigin(0, 0).setScale(0.5);
@@ -49,37 +68,42 @@ class Play extends Phaser.Scene {
         this.moneyCounterIcon = this.add.image(this.moneySpacing, 15, 'beandollar').setScale(0.1);
 
         //Create an upgrade button
-        this.upgradeButton = this.add.text(this.moneySpacing + 10, 2, 'Upgrade', buttonConfig).setInteractive({
-            useHandCursor: true,
-        });
-        this.upgradeButton.on('pointerdown', () => {
+        this.upgradeButton = new Button(this.moneySpacing + 75, 15, 'Upgrade', this, () => {
             this.scene.launch('upgradesScene');
         });
+        this.upgradeButton.blackButton();
 
     }
 
     buildingUpdate(building) {
+        this.sound.play('upgrade', { volume: 0.5 });
         if (building == 'Bean Building 1') {  
             if (!this.building1){
                 this.building1 = new Building1(this, centerX/2 - 200, centerY/2 + 50, 'building').setOrigin(0, 0);
             }
             this.building1.upgrade();
+            this.building1.valueIncrease += 1;
         } 
         else if (building == 'Bean Building 2') {
             if (!this.building2){
                 this.building2 = new Building2(this, centerX/2, centerY/2 + 50, 'building').setOrigin(0, 0);
             }
             this.building2.upgrade();
+            this.building2.valueIncrease += 5;
         }
         else if (building == 'Bean Building 3') {
             if (!this.building3){
                 this.building3 = new Building3(this, centerX/2 + 200, centerY/2 + 50, 'building').setOrigin(0, 0);
+                this.level1.stop();
+                this.level3.play();
             }
             this.building3.upgrade();
+            this.building3.valueIncrease += 10;
         }
     }
 
     clickUpdate() {
+        this.sound.play('upgrade', { volume: 0.5 });
         beansValue += 1;
         money -= clickCost;
         this.moneyCounter.text = money;
@@ -107,6 +131,15 @@ class Play extends Phaser.Scene {
         if (this.building1) this.building1.update();
         if (this.building2) this.building2.update();
         if (this.building3) this.building3.update();
+
+        //When P is pressed, pause the game
+        if (Phaser.Input.Keyboard.JustDown(keyP)) {
+            // if Upgrades scene is open, close it
+            if (this.scene.isActive('upgradesScene')) {
+                this.scene.stop('upgradesScene');
+            }
+            this.scene.pause().launch('pauseScene');
+        }
     }
 
 }

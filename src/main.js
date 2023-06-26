@@ -12,7 +12,7 @@ let config = {
             fps: 60
         }
     },
-    scene: [ Play, Title, Upgrades ]
+    scene: [ Play, Title, Upgrades, Pause ]
 }
 
 let game = new Phaser.Game(config);
@@ -51,4 +51,4 @@ const buttonConfig = Object.assign({}, moneyConfig, { fontSize: '16px', color: '
 
 maxedUpgrades = []; 
 
-let keyESC;
+let keyESC, keyP;

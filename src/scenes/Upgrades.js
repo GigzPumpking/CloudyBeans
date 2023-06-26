@@ -91,14 +91,14 @@ class Upgrades extends Phaser.Scene {
                 // Insert code to upgrade or unlock bean click
                 if (money >= clickCost) {
                     this.play.clickUpdate();
-                }
 
-                if (beansValue >= 10) {
-                    maxedUpgrades.push('Bean Click');
-                    this.upgradeButton0.destroy();
-                    this.upgradeButton0 = null;
+                    if (beansValue >= 10) {
+                        maxedUpgrades.push('Bean Click');
+                        this.upgradeButton0.destroy();
+                        this.upgradeButton0 = null;
+                    }
                 }
-            })
+            });
         }
         else if (upgrade == 'Bean Building 1') { 
             this.upgradeButton1 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 1: ' + this.upgradeCost1, this, () => {
@@ -107,12 +107,12 @@ class Upgrades extends Phaser.Scene {
                 if (money >= this.upgradeCost1) {
                     this.play.buildingUpdate(upgrade);
                     this.upgradeCost1 = this.play.building1.upgradeCost;
-                }
 
-                if (this.play.building1.value >= 100) {
-                    maxedUpgrades.push('Bean Building 1');
-                    this.upgradeButton1.destroy();
-                    this.upgradeButton1 = null;
+                    if (this.play.building1.value >= 100) {
+                        maxedUpgrades.push('Bean Building 1');
+                        this.upgradeButton1.destroy();
+                        this.upgradeButton1 = null;
+                    }
                 }
             })
         }
@@ -124,12 +124,12 @@ class Upgrades extends Phaser.Scene {
                 if (money >= this.upgradeCost2) {
                     this.play.buildingUpdate(upgrade);
                     this.upgradeCost2 = this.play.building2.upgradeCost;
-                }
 
-                if (this.play.building2.value >= 500) {
-                    maxedUpgrades.push('Bean Building 2');
-                    this.upgradeButton2.destroy();
-                    this.upgradeButton2 = null;
+                    if (this.play.building2.value >= 500) {
+                        maxedUpgrades.push('Bean Building 2');
+                        this.upgradeButton2.destroy();
+                        this.upgradeButton2 = null;
+                    }
                 }
             })
         }
@@ -141,12 +141,12 @@ class Upgrades extends Phaser.Scene {
                 if (money >= this.upgradeCost3) {
                     this.play.buildingUpdate(upgrade);
                     this.upgradeCost3 = this.play.building3.upgradeCost;
-                }
 
-                if (this.play.building3.value >= 1000) {
-                    maxedUpgrades.push('Bean Building 3');
-                    this.upgradeButton3.destroy();
-                    this.upgradeButton3 = null;
+                    if (this.play.building3.value >= 1000) {
+                        maxedUpgrades.push('Bean Building 3');
+                        this.upgradeButton3.destroy();
+                        this.upgradeButton3 = null;
+                    }
                 }
             })
         }
