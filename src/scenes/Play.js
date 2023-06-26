@@ -16,8 +16,9 @@ class Play extends Phaser.Scene {
         this.load.audio('click3', 'sound/click3.wav');
 
         // load music
-        this.load.audio('level1', 'sound/bean_lvl1.mp3');
-        this.load.audio('level3', 'sound/bean_lvl3.mp3');
+        this.load.audio('level1', 'sound/bean_level1.mp3');
+        this.load.audio('level2', 'sound/bean_level2.mp3');
+        this.load.audio('level3', 'sound/bean_level3.mp3');
 
         // load upgrade sound
         this.load.audio('upgrade', 'sound/upgrade.wav');
@@ -87,6 +88,8 @@ class Play extends Phaser.Scene {
         else if (building == 'Bean Building 2') {
             if (!this.building2){
                 this.building2 = new Building2(this, centerX/2, centerY/2 + 50, 'building').setOrigin(0, 0);
+                this.level1.stop();
+                this.level2.play();
             }
             this.building2.upgrade();
             this.building2.valueIncrease += 5;
@@ -94,7 +97,7 @@ class Play extends Phaser.Scene {
         else if (building == 'Bean Building 3') {
             if (!this.building3){
                 this.building3 = new Building3(this, centerX/2 + 200, centerY/2 + 50, 'building').setOrigin(0, 0);
-                this.level1.stop();
+                this.level2.stop();
                 this.level3.play();
             }
             this.building3.upgrade();
