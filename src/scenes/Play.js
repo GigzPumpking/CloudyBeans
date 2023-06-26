@@ -114,7 +114,7 @@ class Play extends Phaser.Scene {
         this.moneySpacing = this.moneyCounter.x + this.moneyCounter.width + 30;
         this.moneyCounter.text = money;
         this.moneyCounterIcon.x = this.moneySpacing;
-        this.upgradeButton.x = this.moneySpacing + 10;
+        this.upgradeButton.button.x = this.moneySpacing + 75;
     }
 
     beanCreate() {

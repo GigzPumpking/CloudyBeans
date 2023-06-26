@@ -77,9 +77,9 @@ class Upgrades extends Phaser.Scene {
             button.updateText('Bean Click: ' + cost);
         }
 
-        if (money < cost && button.color != 'red') {
+        if (money < cost && button.status != 'red') {
             button.redButton();
-        } else if (money >= cost && button.color != 'green') {
+        } else if (money >= cost && button.status != 'green') {
             button.greenButton();
         }
     }
