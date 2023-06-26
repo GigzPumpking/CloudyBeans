@@ -9,9 +9,19 @@ class Play extends Phaser.Scene {
         this.load.image('beandollar', 'beandollar.png');
         this.load.image('building', 'beanFacility.png');
         this.load.image('background', 'background.jpg');
+
+        // load clicking sounds
+        this.load.audio('click1', 'sound/click1.wav');
+        this.load.audio('click2', 'sound/click2.wav');
+        this.load.audio('click3', 'sound/click3.wav');
+
+        // load music
+        this.load.audio('level1', 'sound/bean_lvl1.mp3');
+        this.load.audio('level3', 'sound/bean_lvl3.mp3');
     }
         
     create() {
+
         //Create background
         this.background = this.add.tileSprite(0, 0, 2160, 1620, 'background').setOrigin(0, 0).setScale(0.5);
         clickCost = 10;

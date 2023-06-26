@@ -19,6 +19,6 @@ class Building3 extends Building {
     update() {
         super.update();
         this.upgradeCostIncrease = this.upgradeCost;
-        this.valueIncrease = this.valueIncrease + this.value;
+        this.valueIncrease *= 2;
     }
 }

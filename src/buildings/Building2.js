@@ -18,5 +18,6 @@ class Building2 extends Building {
 
     update() {
         super.update();
+        this.valueIncrease *= 2;
     }
 }

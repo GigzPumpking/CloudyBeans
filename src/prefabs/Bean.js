@@ -24,6 +24,9 @@ class Bean extends Phaser.GameObjects.Sprite {
     }
 
     beanClick() {
+        // play a random click sound
+        let rand = Math.floor(Math.random() * 3) + 1;
+        this.scene.sound.play('click' + rand, { volume: 1 });
         money += this.value;
         this.destroy();
         beans.remove(this);
