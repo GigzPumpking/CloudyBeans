@@ -24,12 +24,15 @@ let money;
 let beans = null;
 let beansValue = 1;
 
+let ufoSpeed = 100;
+let ufoValue = 5;
+
 // Initial unlock costs HERE
 
 let clickCost;
-let b1UnlockCost = 10;
-let b2UnlockCost = 100;
-let b3UnlockCost = 1000;
+let b1UnlockCost = 1;
+let b2UnlockCost = 1;
+let b3UnlockCost = 1;
 
 let moneyConfig = {
     fontFamily: 'Belanosima',
@@ -54,6 +57,13 @@ const buttonConfig = Object.assign({}, moneyConfig, { fontFamily: 'Belanosima', 
 
 
 const valueConfig = Object.assign({}, moneyConfig, { fontSize: '16px', color: '#000', backgroundColor: '#FFFFFF', align: 'center', fixedWidth: 0 });
+
+const popUpConfig = {
+    fontFamily: 'Courier',
+    fontSize: '36px',
+    color: '#000',
+    align: 'center'
+}
 
 maxedUpgrades = []; 
 

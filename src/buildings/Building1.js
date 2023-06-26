@@ -6,7 +6,7 @@ class Building1 extends Building {
         this.upgradeCost = b1UnlockCost;
         this.upgradeCostIncrease = 10;
         this.valueIncrease = 2;
-        this.location = 40;
+        this.location = 70;
         this.floor = 'Floor 1';
 
         //Timer for money generation
@@ -18,10 +18,16 @@ class Building1 extends Building {
         });
 
         // First built, build workers
-        this.workers.add(new Bean_Worker(this.scene,x+128,y+50,'bean3_toss',0,4,10))
-        for(let i = 1; i < 6; i++){
-            this.workers.add(new Bean_Worker(this.scene,x+128+60*i,y+55,'bean3_box',0,3,5))
-        }
+        this.workers.add(new Bean_Worker(this.scene,x+188,y+510,'bean3_toss',0,4,10).setDepth(5.5))
+
+
+        // Add wheel
+        this.wheel = new Wheel(this.scene,x+188+190,y+275,'wheel', 0 ,11, 11).setScale(0.65).setDepth(5.5)
+
+    }
+
+    addWorker() {
+        this.workers.add(new Bean_Worker(this.scene,this.xloc+188+60*this.level,this.yloc+515,'bean3_box',0,3,5).setDepth(5.5))
     }
 
     update() {

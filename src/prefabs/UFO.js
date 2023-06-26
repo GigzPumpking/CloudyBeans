@@ -6,12 +6,16 @@ class UFO extends Phaser.GameObjects.Sprite {
         this.scene = scene;
 
         this.scale = 1;
-        this.body.setVelocity(100, 0);
+        this.body.setVelocity(ufoSpeed, 0);
         this.rotation;
         this.setInteractive({
             useHandCursor: true,
         });
         this.on('pointerdown', this.ufoClick);
+        this.dead = false;
+
+        // play UFO sound
+        this.scene.sound.play('ufo', { volume: 0.5 });
     }
 
     update() {
@@ -24,6 +28,7 @@ class UFO extends Phaser.GameObjects.Sprite {
     }
 
     ufoClick() {
+        money += ufoValue*beansValue;
 
         // change sprite to UFO2
         this.setTexture('ufo2');
@@ -43,6 +48,8 @@ class UFO extends Phaser.GameObjects.Sprite {
 
         this.spewBeans();
 
+        this.death();
+        this.dead = true;
     }
 
     spewBeans() {
@@ -52,12 +59,39 @@ class UFO extends Phaser.GameObjects.Sprite {
         this.scene.sound.play('money' + rand, { volume: 1 });
 
         // throw beans in random directions downwards
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < Math.random() * 5 + 5; i++) {
             let bean = new Bean(this.scene, this.x, this.y, 'bean');
             bean.body.setVelocity(Math.random() * 100 - 50, Math.random() * 100 + 50);
+            beans.add(bean);
         }
+    }
 
-        // Wait 1 second, then destroy
-        this.scene.time.delayedCall(1000, () => { this.destroy(); });
+    death() {
+        if (!this.dead) {
+            // Wait 1 second, then destroy
+            this.scene.time.delayedCall(1000, () => { 
+                // Explosion particles
+                this.lineEmitter = this.scene.add.particles(this.x, this.y, 'beandollar', {
+                    speed: { min: 100, max: 200 },
+                    angle: { min: 0, max: 360 },
+                    scale: { start: 0.1, end: 0 },
+                    rotation: { min: 0, max: 360 },
+                    blendMode: 'ADD',
+                    lifespan: 200,
+                    //rapidly changing orange to red tint
+                    tint: [0xff0000, 0xff7700, 0xffaa00, 0xffdd00, 0xffff00],
+                });
+                // wait 1 second, then destroy particles
+                this.scene.time.delayedCall(750, () => {
+                    this.lineEmitter.destroy();
+                }, null, this);
+
+                // stop playing UFO sound
+                this.scene.sound.stopByKey('ufo');
+                this.scene.sound.play('explosion', { volume: 0.3 });
+                this.destroy(); 
+                ufoSpeed += 20;
+            });
+        }
     }
 }

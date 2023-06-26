@@ -50,7 +50,7 @@ class Title extends Phaser.Scene {
         }
 
         // Add start button
-        let startButton = new Button(game.config.width/2 + 235, 20, 'CLICK TO START', this, () => {
+        let startButton = new Button(game.config.width/2 + 235, 25, 'CLICK TO START', this, () => {
             this.scene.start('playScene');
         });
         startButton.whiteButton();
