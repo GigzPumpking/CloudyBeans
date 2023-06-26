@@ -13,14 +13,34 @@ class UFO extends Phaser.GameObjects.Sprite {
         });
         this.on('pointerdown', this.ufoClick);
         this.dead = false;
+        this.depth = 6;
 
         // play UFO sound
         this.scene.sound.play('ufo', { volume: 0.5 });
+
+        this.auraEmitter = this.scene.add.particles(this.x, this.y, 'beandollar', {
+            speed: { min: 100, max: 200 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 0.1, end: 0 },
+            rotation: { min: 0, max: 360 },
+            blendMode: 'ADD',
+            lifespan: 200,
+            //rapidly changing yellow to gold
+            tint: [0xC7EA46, 0xF1F1A5, 0xC7EA46, 0xF1F1A5, 0xC7EA46],
+            depth: 5
+        });
+
     }
 
     update() {
         if ((this.x > game.config.width) && (!this.dead)) {
+            this.auraEmitter.destroy();
             this.destroy();
+        }
+
+        // emit particles around UFO
+        if (this.auraEmitter) {
+            this.auraEmitter.setPosition(this.x + this.width*this.scale/2, this.y + this.height*this.scale/2);
         }
 
         // Move in a sine wave
@@ -68,6 +88,7 @@ class UFO extends Phaser.GameObjects.Sprite {
 
     death() {
         if (!this.dead) {
+            this.auraEmitter.destroy();
             // Wait 1 second, then destroy
             this.scene.time.delayedCall(1000, () => { 
                 // Explosion particles

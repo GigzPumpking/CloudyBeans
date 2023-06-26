@@ -106,11 +106,11 @@ class Play extends Phaser.Scene {
         this.moneyCounterIcon = this.add.image(this.moneySpacing, 15, 'beandollar').setScale(0.1);
 
         //Create an upgrade button
-        this.upgradeButton = new Button(this.moneySpacing + 75, 15, 'Upgrade', this, () => {
+        this.upgradeButton = new Button(game.config.width - 90, 25, 'Upgrade', this, () => {
             this.scene.launch('upgradesScene');
         });
         this.upgradeButton.whiteButton();
-        this.upgradeButton.button.setScale(1.5);
+        this.upgradeButton.button.setFontSize(36);
 
         //Create a UFO on a random interval
         this.time.addEvent({
@@ -121,6 +121,8 @@ class Play extends Phaser.Scene {
         });
 
         this.valueText = this.add.text(0, 40, 'Bean Value: ' + beansValue, valueConfig);
+
+        this.ufoCreate();
     }
 
     ufoCreate() {
@@ -171,7 +173,6 @@ class Play extends Phaser.Scene {
         this.moneySpacing = this.moneyCounter.x + this.moneyCounter.width + 30;
         this.moneyCounter.text = money;
         this.moneyCounterIcon.x = this.moneySpacing;
-        this.upgradeButton.button.x = this.moneySpacing + 75;
 
 
         this.valueText.text = 'Bean Value: ' + beansValue + ' per click';

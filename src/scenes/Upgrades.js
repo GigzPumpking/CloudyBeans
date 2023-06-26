@@ -41,7 +41,7 @@ class Upgrades extends Phaser.Scene {
         let mainText = this.add.text(centerX, centerY - 200, 'Upgrades', textConfig).setOrigin(0.5);
 
         // Create a white rectangle to serve as a background for the text
-        let background = this.add.rectangle(centerX, centerY, 300, 300, 0xFFFFFF).setOrigin(0.5).setDepth(-1);
+        let background = this.add.rectangle(centerX, centerY, 250, 300, 0xFFFFFF).setOrigin(0.5).setDepth(-1);
 
         this.upgradeButtons = [this.upgradeButton0, this.upgradeButton1, this.upgradeButton2, this.upgradeButton3, this.exit];
 
@@ -153,6 +153,7 @@ class Upgrades extends Phaser.Scene {
 
                 }
             });
+            this.upgradeButton0.button.setFontSize(20);
         }
         else if (upgrade == 'Bean Building 1') { 
             this.upgradeButton1 = new Button(centerX, centerY + this.verticalSpacing, 'First Floor: ' + this.upgradeCost1, this, () => {
@@ -166,6 +167,8 @@ class Upgrades extends Phaser.Scene {
                     this.popUp(upgrade, this.play.building1);
                 }
             })
+
+            this.upgradeButton1.button.setFontSize(20);
         }
         else if (upgrade == 'Bean Building 2') {
             this.upgradeButton2 = new Button(centerX, centerY + this.verticalSpacing, 'Second Floor: ' + this.upgradeCost2, this, () => {
@@ -180,6 +183,8 @@ class Upgrades extends Phaser.Scene {
                     this.popUp(upgrade, this.play.building2);
                 }
             })
+
+            this.upgradeButton2.button.setFontSize(20);
         }
         else if (upgrade == 'Bean Building 3') {
             this.upgradeButton3 = new Button(centerX, centerY + this.verticalSpacing, 'Third Floor: ' + this.upgradeCost3, this, () => {
@@ -194,6 +199,8 @@ class Upgrades extends Phaser.Scene {
                     this.popUp(upgrade, this.play.building3);
                 }
             })
+
+            this.upgradeButton3.button.setFontSize(20);
         }
     }
 }

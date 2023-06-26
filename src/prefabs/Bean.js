@@ -6,7 +6,8 @@ class Bean extends Phaser.GameObjects.Sprite {
         this.scene = scene;
         this.value = beansValue;
 
-        this.scale = 1.5;
+        this.scale = 1.75;
+
         this.body.setVelocity(Math.random() * 20 + 20, Math.random() * 120 + 80);
         this.rotation;
         this.rotationSpeed = Math.random() * 0.11 - 0.05;
@@ -15,6 +16,7 @@ class Bean extends Phaser.GameObjects.Sprite {
         });
         this.on('pointerdown', this.beanClick);
         this.depth = 6;
+
     }
 
     update() {
@@ -29,12 +31,12 @@ class Bean extends Phaser.GameObjects.Sprite {
         // Spray particles in random directions around bean
 
         this.lineEmitter = this.scene.add.particles(this.x, this.y, 'beandollar', {
-            speed: { min: 50, max: 100 },
+            speed: { min: 10, max: 100 },
             angle: { min: 0, max: 360 },
             scale: { start: 0.01, end: 0 },
             blendMode: 'ADD',
             lifespan: 1000,
-            tint: 0x00ff00,
+            tint: 0xC7EA46,
         });
 
         // play a random click sound
@@ -43,7 +45,7 @@ class Bean extends Phaser.GameObjects.Sprite {
         money += this.value;
 
         // Wait 1 second, then destroy
-        this.scene.time.delayedCall(750, () => {
+        this.scene.time.delayedCall(500, () => {
             this.lineEmitter.destroy();
         }, null, this);
 

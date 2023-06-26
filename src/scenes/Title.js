@@ -56,7 +56,7 @@ class Title extends Phaser.Scene {
             this.scene.start('playScene');
         });
         startButton.whiteButton();
-        startButton.button.setScale(2);
+        startButton.button.setFontSize(30);
 
         let creditsButton = new Button(game.config.width/5, game.config.height/1.15, 'CREDITS', this, () => {
             this.scene.start('creditScene');

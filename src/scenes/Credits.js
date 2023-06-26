@@ -47,23 +47,19 @@ class Credits extends Phaser.Scene {
         this.add.text(game.config.width/2, 6*game.config.height/9, 'Ariel Arriaga: Writing/Art', smallConfig).setWordWrapWidth(game.config.width / 2).setAlign('center').setColor('#00B127').setOrigin(0.5);
         this.add.text(game.config.width/2, 7.5*game.config.height/9, 'UFO Art Asset: https://kububbis.itch.io/kawaii-ufo-sprite-pack', smallConfig).setWordWrapWidth(game.config.width / 2).setAlign('center').setColor('#00B127').setOrigin(0.5);
 
+        // Escape button
 
-        // instructions
-        this.add.text(game.config.width/1.35, 8.7*game.config.height/9, 'Press ESC to return to the title screen menu', smallConfig).setOrigin(1.1).setFontSize(22);
-
-        keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+        let escapeButton = new Button(game.config.width/2, 8.7*game.config.height/9, 'RETURN TO MENU', this, () => {
+            this.scene.start('titleScene');
+        });
+        escapeButton.whiteButton();
+        escapeButton.button.setScale(2);
 
         this.sound.stopAll();
         this.credits = this.sound.add('credits', {volume: 0.8, loop: true});
         this.credits.play();
 
 
-    }
-
-    update() {
-        if (Phaser.Input.Keyboard.JustDown(keyESC)) {
-            this.scene.start('titleScene');    
-        }
     }
 
 }
