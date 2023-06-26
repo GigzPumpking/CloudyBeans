@@ -30,9 +30,9 @@ let ufoValue = 5;
 // Initial unlock costs HERE
 
 let clickCost;
-let b1UnlockCost = 1;
-let b2UnlockCost = 1;
-let b3UnlockCost = 1;
+let b1UnlockCost = 10;
+let b2UnlockCost = 100;
+let b3UnlockCost = 1000;
 
 let moneyConfig = {
     fontFamily: 'Belanosima',
