@@ -11,10 +11,12 @@ class Building extends Phaser.GameObjects.Sprite {
         this.upgradeCost;
         this.upgradeCostIncrease;
         this.valueIncrease;
-        this.scale = 0.25;
+        this.scale = 0.65;
+        this.location;
+        this.floor;
 
         // Place text above building displaying its value
-        this.valueText = this.scene.add.text(this.x + this.width*this.scale / 2 - 30, this.y - 30, 'Value: ' + this.value + ' / ' + this.delay/1000 + 's', { fontFamily: 'Arial', fontSize: 20, color: '#000000' });
+        this.valueText = this.scene.add.text(0, this.location, this.floor + ': ' + this.value + ' / ' + this.delay/1000 + 's', valueConfig);
     }
 
     moneyGenerate() {
@@ -23,7 +25,8 @@ class Building extends Phaser.GameObjects.Sprite {
 
     update() {
         // Update value text
-        this.valueText.text = 'Value: ' + this.value + ' / ' + this.delay/1000 + 's';
+        this.valueText.text = this.floor + ': ' + this.value + ' / ' + this.delay/1000 + 's';
+        if (this.valueText.y != this.location) this.valueText.y = this.location;
     }
 
     upgrade() {

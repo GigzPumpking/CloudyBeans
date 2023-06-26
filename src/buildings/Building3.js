@@ -6,6 +6,8 @@ class Building3 extends Building {
         this.upgradeCost = b3UnlockCost;
         this.upgradeCostIncrease = this.upgradeCost;
         this.valueIncrease = 10;
+        this.location = 100;
+        this.floor = 'Floor 3';
 
         //Timer for money generation
         this.scene.time.addEvent({
