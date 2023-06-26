@@ -16,6 +16,10 @@ class Button {
             
     }
 
+    changePosition(y) {
+        this.button.y = y;
+    }
+
     pointerDown() {
         this.callback();
         this.scene.sound.play('confirm', { volume: 1 });
