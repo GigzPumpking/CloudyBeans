@@ -14,9 +14,11 @@ class Building extends Phaser.GameObjects.Sprite {
         this.scale = 0.65;
         this.location;
         this.floor;
+        this.workers = this.scene.add.group();
 
         // Place text above building displaying its value
         this.valueText = this.scene.add.text(0, this.location, this.floor + ': ' + this.value + ' / ' + this.delay/1000 + 's', valueConfig);
+        
     }
 
     moneyGenerate() {

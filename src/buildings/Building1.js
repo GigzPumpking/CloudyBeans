@@ -16,6 +16,12 @@ class Building1 extends Building {
             callbackScope: this,
             loop: true
         });
+
+        // First built, build workers
+        this.workers.add(new Bean_Worker(this.scene,x+128,y+50,'bean3_toss',0,4,10))
+        for(let i = 1; i < 6; i++){
+            this.workers.add(new Bean_Worker(this.scene,x+128+60*i,y+55,'bean3_box',0,3,5))
+        }
     }
 
     update() {
