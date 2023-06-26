@@ -4,6 +4,8 @@ class Title extends Phaser.Scene {
     }
 
     preload() {
+        // Add loading text to center of the screen
+        let loadingText = this.add.text(centerX, centerY, 'Loading...', {fontFamily: 'Courier', fontSize: '28px', color: '#FFFFFF'}).setOrigin(0.5);
         // load background image
         this.load.path = './assets/';
         this.load.image('titlebackground', './titlebackground.jpg');

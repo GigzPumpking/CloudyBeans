@@ -4,6 +4,8 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
+        // Add loading text to center of the screen
+        let loadingText = this.add.text(centerX, centerY, 'Loading...', {fontFamily: 'Courier', fontSize: '28px', color: '#FFFFFF'}).setOrigin(0.5);
         this.load.path = './assets/';
         this.load.image('bean', 'bean.png');
         this.load.image('beandollar', 'beandollar.png');
@@ -112,7 +114,7 @@ class Play extends Phaser.Scene {
 
         //Create a UFO on a random interval
         this.time.addEvent({
-            delay: 15000,
+            delay: 22500,
             callback: this.ufoCreate,
             callbackScope: this,
             loop: true
@@ -122,7 +124,7 @@ class Play extends Phaser.Scene {
     }
 
     ufoCreate() {
-        this.ufo = new UFO(this, 0, 100, 'ufo1').setOrigin(0, 0).setScale(0.2);
+        this.ufo = new UFO(this, -50, 100, 'ufo1').setOrigin(0, 0).setScale(0.2);
     }
 
     buildingUpdate(building) {
