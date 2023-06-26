@@ -54,7 +54,7 @@ class Credits extends Phaser.Scene {
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.sound.stopAll();
-        this.credits = this.sound.add('credits', {volume: 0.017, loop: true});
+        this.credits = this.sound.add('credits', {volume: 0.8, loop: true});
         this.credits.play();
 
 

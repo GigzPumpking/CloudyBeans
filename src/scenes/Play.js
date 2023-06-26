@@ -69,12 +69,12 @@ class Play extends Phaser.Scene {
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
         // level music
-        this.level1 = this.sound.add('level1', {volume: 0.3, loop: true});
+        this.level1 = this.sound.add('level1', {volume: 0.8, loop: true});
         this.level1.play();
 
-        this.level2 = this.sound.add('level2', {volume: 0.3, loop: true});
+        this.level2 = this.sound.add('level2', {volume: 0.8, loop: true});
 
-        this.level3 = this.sound.add('level3', {volume: 0.3, loop: true});
+        this.level3 = this.sound.add('level3', {volume: 0.8, loop: true});
 
         //Create background
         this.background = this.add.tileSprite(0, 0, 2160, 1620, 'background').setOrigin(0, 0).setScale(0.5);
