@@ -9,7 +9,7 @@ class HowTo extends Phaser.Scene {
             fontSize: '28px',
             backgroundColor: '#303030',
             color: '#FFFFFF',
-            align: 'right',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -19,7 +19,11 @@ class HowTo extends Phaser.Scene {
  
         let small
 
-        this.add.text(game.config.width/2, game.config.height/6, 'How To Play', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/9, 'How To Play', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 2*game.config.height/9, 'Use the mouse to click on falling beans', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 3.1*game.config.height/9, 'Collecting beans will earn you bean dollars,\nwhich can be spent on upgrades.', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 4.5*game.config.height/9, 'Upgrades include: Beans earned per click \nand bean production factories.', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, 4.5*game.config.height/9, 'Get as many beans as you can to dominate the bean market!', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/1.35, 8.5*game.config.height/9, 'Press ESC to return to the title screen menu', menuConfig).setOrigin(1.1).setFontSize(22);
 
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
