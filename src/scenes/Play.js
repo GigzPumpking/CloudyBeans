@@ -28,16 +28,42 @@ class Play extends Phaser.Scene {
         // load upgrade sound
         this.load.audio('upgrade', 'sound/upgrade.wav');
 
-        // load button hover sounds
-        this.load.audio('select1', 'sound/bean_select1.wav');
-        this.load.audio('select2', 'sound/bean_select2.wav');
+        // Load Bean workers
+        this.load.spritesheet('bean3_idle', 'Bean Worker/bean_floor3_idle.png', {frameWidth: 560, frameHeight: 560, startFrame: 0, endFrame: 3});
+        this.load.spritesheet('bean3_toss', 'Bean Worker/bean_floor3_toss.png', {frameWidth: 560, frameHeight: 560, startFrame: 0, endFrame: 4});
+        this.load.spritesheet('bean3_box', 'Bean Worker/bean_floor3_box.png', {frameWidth: 560, frameHeight: 560, startFrame: 0, endFrame: 3});
+       
+        this.load.spritesheet('bean2_toss', 'Bean Worker/coffee_pea.png', {frameWidth: 560, frameHeight: 560, startFrame: 15, endFrame: 23});
+        this.load.spritesheet('bean2_grind', 'Bean Worker/coffee_pea.png', {frameWidth: 560, frameHeight: 560, startFrame: 9, endFrame: 14});
 
-        // load button confirm sound
-        this.load.audio('confirm', 'sound/bean_confirm.wav');
+        this.load.spritesheet('bean1_toss', 'Bean Worker/coffee_pea.png', {frameWidth: 560, frameHeight: 560, startFrame: 24, endFrame: 33});
+        this.load.spritesheet('bean1_box', 'Bean Worker/coffee_pea.png', {frameWidth: 560, frameHeight: 560, startFrame: 34, endFrame: 43});
+
+        // load UFO images and sound
+        this.load.image('ufo1', 'UFO1.png');
+        this.load.image('ufo2', 'UFO2.png');
+        this.load.audio('ufo', 'sound/UFO.wav');
+        this.load.audio('explosion', 'sound/explosion.wav')
+
+        // load money sounds
+        this.load.audio('money1', 'sound/money1.wav');
+        this.load.audio('money2', 'sound/money2.wav');
+        this.load.audio('money3', 'sound/money3.wav');
+
+        // load wheel spritesheet
+        this.load.spritesheet('wheel', 'wheel.png', {frameWidth: 1200, frameHeight: 1200, startFrame: 0, endFrame: 11});
+
+        this.load.spritesheet('pipe', 'pipe.png', {frameWidth: 1200, frameHeight: 1200, startFrame: 0, endFrame: 11});
+
+        this.load.spritesheet('loading', 'loading.png', {frameWidth: 1200, frameHeight: 1200, startFrame: 0, endFrame: 11});
     }
         
     create() {
+
+        this.sound.stopAll();
         money = 0;
+        ufoSpeed = 100;
+        ufoValue = 5;
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
         // level music
@@ -50,7 +76,7 @@ class Play extends Phaser.Scene {
 
         //Create background
         this.background = this.add.tileSprite(0, 0, 2160, 1620, 'background').setOrigin(0, 0).setScale(0.5);
-        clickCost = 10;
+        clickCost = 5;
         this.building1 = null;
         this.building2 = null;
         this.building3 = null;
@@ -81,34 +107,51 @@ class Play extends Phaser.Scene {
         this.upgradeButton = new Button(this.moneySpacing + 75, 15, 'Upgrade', this, () => {
             this.scene.launch('upgradesScene');
         });
-        this.upgradeButton.blackButton();
+        this.upgradeButton.whiteButton();
+        this.upgradeButton.button.setScale(1.5);
 
+        //Create a UFO on a random interval
+        this.time.addEvent({
+            delay: 15000,
+            callback: this.ufoCreate,
+            callbackScope: this,
+            loop: true
+        });
+
+        this.valueText = this.add.text(0, 40, 'Bean Value: ' + beansValue, valueConfig);
+    }
+
+    ufoCreate() {
+        this.ufo = new UFO(this, 0, 100, 'ufo1').setOrigin(0, 0).setScale(0.2);
     }
 
     buildingUpdate(building) {
         this.sound.play('upgrade', { volume: 0.5 });
         if (building == 'Bean Building 1') {  
             if (!this.building1){
-                this.building1 = new Building1(this, centerX/2 - 50 - 25, centerY/2 + 50 + 300, 'floor1').setOrigin(0, 0);
+                this.building1 = new Building1(this, centerX/2 - 180, centerY/2 - 120, 'floor1').setOrigin(0, 0).setDepth(5);
             }
+            if (this.building1.level < 7) this.building1.addWorker();
             this.building1.upgrade();
             this.building1.valueIncrease += 1;
         } 
         else if (building == 'Bean Building 2') {
             if (!this.building2){
-                this.building2 = new Building2(this, centerX/2 - 34 - 25, centerY/2 - 28 + 300, 'floor2').setOrigin(0, 0);
+                this.building2 = new Building2(this, centerX/2 - 180, centerY/2 - 120, 'floor2').setOrigin(0, 0).setDepth(4);
                 this.level1.stop();
                 this.level2.play();
             }
+            if (this.building2.level < 4) this.building2.addWorker();
             this.building2.upgrade();
             this.building2.valueIncrease += 5;
         }
         else if (building == 'Bean Building 3') {
             if (!this.building3){
-                this.building3 = new Building3(this, centerX/2 - 47 - 25, centerY/2 - 260 + 300, 'floor3').setOrigin(0, 0);
+                this.building3 = new Building3(this, centerX/2 - 180, centerY/2 - 120, 'floor3').setOrigin(0, 0).setDepth(3);
                 this.level2.stop();
                 this.level3.play();
             }
+            if (this.building3.level < 6) this.building3.addWorker();
             this.building3.upgrade();
             this.building3.valueIncrease += 10;
         }
@@ -127,6 +170,9 @@ class Play extends Phaser.Scene {
         this.moneyCounter.text = money;
         this.moneyCounterIcon.x = this.moneySpacing;
         this.upgradeButton.button.x = this.moneySpacing + 75;
+
+
+        this.valueText.text = 'Bean Value: ' + beansValue + ' per click';
     }
 
     beanCreate() {
@@ -139,6 +185,7 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+
         this.moneyUIUpdate();
         if (this.building1) this.building1.update();
         if (this.building2) this.building2.update();
@@ -152,6 +199,8 @@ class Play extends Phaser.Scene {
             }
             this.scene.pause().launch('pauseScene');
         }
+
+        if (this.ufo) this.ufo.update();
     }
 
 }

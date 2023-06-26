@@ -43,6 +43,9 @@ class Pause extends Phaser.Scene {
             this.scene.resume('playScene').stop();
         })
 
+        Restart.button.setScale(2);
+        Resume.button.setScale(2);
+
         Restart.blackButton();
         Resume.blackButton();
     }

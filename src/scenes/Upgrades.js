@@ -98,11 +98,10 @@ class Upgrades extends Phaser.Scene {
 
     updateCost(num, cost, button) {
         // Update button text
-        if (button && num != 0) {
-            button.updateText('Bean Building ' + num + ': ' + cost);
-        } else if (button && num == 0) {
-            button.updateText('Bean Click: ' + cost);
-        }
+        if (num == 0) button.updateText('Bean Value: ' + cost);
+        else if (num == 1) button.updateText('First Floor: ' + cost);
+        else if (num == 2) button.updateText('Second Floor: ' + cost);
+        else if (num == 3) button.updateText('Third Floor: ' + cost);
 
         if (money < cost && button.status != 'red') {
             button.redButton();
@@ -120,9 +119,28 @@ class Upgrades extends Phaser.Scene {
         return false;
     }
 
+    popUp(upgrade, building) {
+        let Upgraded;
+        if (upgrade == 'Bean Click') Upgraded = this.add.text(460, 400, '+1', popUpConfig).setOrigin(0, 0.5).setDepth(100);
+        else {
+            Upgraded = this.add.text(460, 400, '+' + building.valueIncrease, popUpConfig).setOrigin(0, 0.5).setDepth(100);
+        }
+        this.tweens.add({
+            targets: Upgraded,
+            alpha: 0,
+            duration: 1000,
+            ease: 'Linear',
+            repeat: 0,
+            yoyo: false,
+            onComplete: () => {
+                Upgraded.destroy();
+            }
+        });
+    }
+
     upgradeSelection(upgrade) {
         if (upgrade == 'Bean Click') {
-            this.upgradeButton0 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Click: ' + clickCost, this, () => {
+            this.upgradeButton0 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Value: ' + clickCost, this, () => {
 
                 // Insert code to upgrade or unlock bean click
                 if (money >= clickCost) {
@@ -130,22 +148,27 @@ class Upgrades extends Phaser.Scene {
                     this.updateCost(0, clickCost, this.upgradeButton0);
                     if (this.maxedFunction(beansValue, 10, this.upgradeButton0, upgrade)) this.upgradeButton0 = null;
                     this.updateButtonPosition();
+
+                    this.popUp(upgrade);
+
                 }
             });
         }
         else if (upgrade == 'Bean Building 1') { 
-            this.upgradeButton1 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 1: ' + this.upgradeCost1, this, () => {
+            this.upgradeButton1 = new Button(centerX, centerY + this.verticalSpacing, 'First Floor: ' + this.upgradeCost1, this, () => {
 
                 // Insert code to upgrade or unlock bean building 1
                 if (money >= this.upgradeCost1) {
                     this.play.buildingUpdate(upgrade);
                     this.upgradeCost1 = this.play.building1.upgradeCost;
                     if (this.maxedFunction(this.play.building1.value, 100, this.upgradeButton1, upgrade)) this.upgradeButton1 = null;
+
+                    this.popUp(upgrade, this.play.building1);
                 }
             })
         }
         else if (upgrade == 'Bean Building 2') {
-            this.upgradeButton2 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 2: ' + this.upgradeCost2, this, () => {
+            this.upgradeButton2 = new Button(centerX, centerY + this.verticalSpacing, 'Second Floor: ' + this.upgradeCost2, this, () => {
                     
                 // Insert code to upgrade or unlock bean building 2
 
@@ -153,11 +176,13 @@ class Upgrades extends Phaser.Scene {
                     this.play.buildingUpdate(upgrade);
                     this.upgradeCost2 = this.play.building2.upgradeCost;
                     if (this.maxedFunction(this.play.building2.value, 500, this.upgradeButton2, upgrade)) this.upgradeButton2 = null;
+
+                    this.popUp(upgrade, this.play.building2);
                 }
             })
         }
         else if (upgrade == 'Bean Building 3') {
-            this.upgradeButton3 = new Button(centerX, centerY + this.verticalSpacing, 'Bean Building 3: ' + this.upgradeCost3, this, () => {
+            this.upgradeButton3 = new Button(centerX, centerY + this.verticalSpacing, 'Third Floor: ' + this.upgradeCost3, this, () => {
                 
                 // Insert code to upgrade or unlock bean building 3
 
@@ -165,6 +190,8 @@ class Upgrades extends Phaser.Scene {
                     this.play.buildingUpdate(upgrade);
                     this.upgradeCost3 = this.play.building3.upgradeCost;
                     if (this.maxedFunction(this.play.building3.value, 1000, this.upgradeButton3, upgrade)) this.upgradeButton3 = null;
+
+                    this.popUp(upgrade, this.play.building3);
                 }
             })
         }

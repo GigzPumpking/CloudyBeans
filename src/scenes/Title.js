@@ -4,7 +4,19 @@ class Title extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('titlebackground', './assets/titlebackground.jpg');
+        // load background image
+        this.load.path = './assets/';
+        this.load.image('titlebackground', './titlebackground.jpg');
+        this.load.audio('title', 'sound/bean_title.mp3');
+        this.load.audio('credits', 'sound/bean_credits.mp3');
+
+        // load button hover sounds
+        this.load.audio('select1', 'sound/bean_select1.wav');
+        this.load.audio('select2', 'sound/bean_select2.wav');
+
+        // load button confirm sound
+        this.load.audio('confirm', 'sound/bean_confirm.wav');
+
     }
 
     create() {
@@ -32,23 +44,28 @@ class Title extends Phaser.Scene {
             },
             fixedWidth: 0
         }
- 
-        // menu text
-        this.add.text(1.5*game.config.width/2, 7*game.config.height/9, 'Press SPACE to start', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/6, game.config.height/1.05, 'Press C for Credits', smallConfig).setOrigin(0.5);
-        this.add.text(game.config.width/1.25, game.config.height/1.05, 'Press H for How to play', smallConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, 2*game.config.height/23, 'Made in Phaser 3.60', smallConfig).setOrigin(0.5);
 
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        // Add start button
+        let startButton = new Button(game.config.width/2 + 235, 25, 'CLICK TO START', this, () => {
+            this.scene.start('playScene');
+        });
+        startButton.whiteButton();
+        startButton.button.setScale(2);
+
+        this.add.text(game.config.width/5, game.config.height/1.15, 'Press C for credits', smallConfig).setOrigin(0.5);
+        this.add.text(game.config.width/1.25, game.config.height/1.15, 'Press H for How to play', smallConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/1.05, 'Made in Phaser 3.60', smallConfig).setOrigin(0.5);
+
         keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
         keyH = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+
+        this.sound.stopAll();
+        this.title = this.sound.add('title', {volume: 0.017, loop: true});
+        this.title.play();
+
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            // Play mode
-            this.scene.start('playScene');    
-        }
 
         if (Phaser.Input.Keyboard.JustDown(keyC)) {
             // Credits mode
