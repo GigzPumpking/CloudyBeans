@@ -5,7 +5,7 @@ class Building1 extends Building {
         this.value = 0;
         this.upgradeCost = b1UnlockCost;
         this.upgradeCostIncrease = 10;
-        this.valueIncrease = 3;
+        this.valueIncrease = 2;
         this.location = 40;
         this.floor = 'Floor 1';
 
