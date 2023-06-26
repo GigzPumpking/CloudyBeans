@@ -19,7 +19,6 @@ class Building2 extends Building {
     }
 
     update() {
-        console.log(this.location);
         super.update();
     }
 }
