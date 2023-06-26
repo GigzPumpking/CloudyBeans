@@ -31,7 +31,7 @@ class Credits extends Phaser.Scene {
         }
 
         // menu text
-        this.add.text(game.config.width/2, game.config.height/9, 'Credits', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/9, 'Credits', menuConfig).setOrigin(0.5).setFontFamily('Belanosima');
         this.add.text(game.config.width/2, 2*game.config.height/9, 'Game Engine: Phaser 3.60', smallConfig).setOrigin(0.5).setColor('#F1EA2B');
 
         // People involved
@@ -51,6 +51,12 @@ class Credits extends Phaser.Scene {
         this.add.text(game.config.width/1.35, 8.5*game.config.height/9, 'Press ESC to return to the title screen menu', smallConfig).setOrigin(1.1).setFontSize(22);
 
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+
+        this.sound.stopAll();
+        this.credits = this.sound.add('credits', {volume: 0.3, loop: true});
+        this.credits.play();
+
+
     }
 
     update() {
