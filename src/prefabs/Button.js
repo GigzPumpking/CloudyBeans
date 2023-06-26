@@ -7,13 +7,17 @@ class Button {
             .setOrigin(0.5)
             .setPadding(10)
             .setInteractive({ useHandCursor: true })
-            .setStyle({ fill: '#FF0000' })
+            .setStyle({ fontFamily: 'Belanosima', fill: '#FF0000' })
             .on('pointerdown', () => this.pointerDown())
             .on('pointerover', () => this.hoverOver())
             .on('pointerout',  () => this.button.setStyle({ fill: '#FF0000' }))
 
         this.status = 'red';
             
+    }
+
+    changePosition(y) {
+        this.button.y = y;
     }
 
     pointerDown() {

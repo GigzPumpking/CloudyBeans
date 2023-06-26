@@ -48,6 +48,7 @@ class Play extends Phaser.Scene {
     }
         
     create() {
+        this.sound.stopAll();
         money = 0;
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 

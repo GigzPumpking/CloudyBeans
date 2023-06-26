@@ -5,7 +5,10 @@ class Title extends Phaser.Scene {
 
     preload() {
         // load background image
-        this.load.image('titlebackground', './assets/titlebackground.jpg');
+        this.load.path = './assets/';
+        this.load.image('titlebackground', './titlebackground.jpg');
+        this.load.audio('title', 'sound/bean_title.mp3');
+        this.load.audio('credits', 'sound/bean_credits.mp3');
     }
 
     create() {
@@ -46,6 +49,14 @@ class Title extends Phaser.Scene {
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
         keyH = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+
+        this.sound.stopAll();
+        this.title = this.sound.add('title', {volume: 0.3, loop: true});
+        this.title.play();
+
+
+
+
     }
 
     update() {
