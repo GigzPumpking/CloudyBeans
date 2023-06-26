@@ -32,7 +32,7 @@ let b2UnlockCost = 1;
 let b3UnlockCost = 1;
 
 let moneyConfig = {
-    fontFamily: 'Courier',
+    fontFamily: 'Belanosima',
     fontSize: '20px',
     color: '#FFFFFF',
     align: 'right',
@@ -45,9 +45,9 @@ let moneyConfig = {
     fixedWidth: 0
 }
 
-const textConfig = Object.assign({}, moneyConfig, { fontSize: '28px', backgroundColor: '#F0000C', color: '#000', align: 'center', fixedWidth: 0 });
+const textConfig = Object.assign({}, moneyConfig, { fontFamily: 'Belanosima', fontSize: '28px', backgroundColor: '#F0000C', color: '#000', align: 'center', fixedWidth: 0 });
 
-const buttonConfig = Object.assign({}, moneyConfig, { fontSize: '16px', color: '#000', align: 'center', fixedWidth: 150 });
+const buttonConfig = Object.assign({}, moneyConfig, { fontFamily: 'Belanosima', fontSize: '16px', color: '#000', align: 'center', fixedWidth: 150 });
 
 // config with relative positioning, expands text to the left instead of the right when text is added
 // config with position relative
