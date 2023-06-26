@@ -90,7 +90,7 @@ class UFO extends Phaser.GameObjects.Sprite {
                 this.scene.sound.stopByKey('ufo');
                 this.scene.sound.play('explosion', { volume: 0.3 });
                 this.destroy(); 
-                ufoSpeed += 20;
+                if (ufoSpeed < 200) ufoSpeed += 20;
             });
         }
     }
