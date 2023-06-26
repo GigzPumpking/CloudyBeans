@@ -51,7 +51,7 @@ class Title extends Phaser.Scene {
         keyH = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
 
         this.sound.stopAll();
-        this.title = this.sound.add('title', {volume: 0.3, loop: true});
+        this.title = this.sound.add('title', {volume: 0.017, loop: true});
         this.title.play();
 
 
