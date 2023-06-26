@@ -102,7 +102,7 @@ class Play extends Phaser.Scene {
         this.upgradeButton = new Button(this.moneySpacing + 75, 15, 'Upgrade', this, () => {
             this.scene.launch('upgradesScene');
         });
-        this.upgradeButton.blackButton();
+        this.upgradeButton.whiteButton();
 
         //Create a UFO on a random interval
         this.time.addEvent({
