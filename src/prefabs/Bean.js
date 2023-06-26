@@ -24,11 +24,28 @@ class Bean extends Phaser.GameObjects.Sprite {
     }
 
     beanClick() {
+        // Spray particles in random directions around bean
+
+        this.lineEmitter = this.scene.add.particles(this.x, this.y, 'beandollar', {
+            speed: { min: 10, max: 20 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 0.01, end: 0 },
+            blendMode: 'ADD',
+            lifespan: 1000,
+        });
+
         // play a random click sound
         let rand = Math.floor(Math.random() * 3) + 1;
         this.scene.sound.play('click' + rand, { volume: 1 });
         money += this.value;
         this.destroy();
         beans.remove(this);
+
+        /*// remove particles after 1 second
+        this.scene.time.delayedCall(1000, () => {
+            this.lineEmitter.destroy();
+        });
+
+        this.scene.time.delayedCall(1000, () => { this.destroy(); });*/
     }
 }

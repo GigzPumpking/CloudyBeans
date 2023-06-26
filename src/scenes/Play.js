@@ -28,13 +28,6 @@ class Play extends Phaser.Scene {
         // load upgrade sound
         this.load.audio('upgrade', 'sound/upgrade.wav');
 
-        // load button hover sounds
-        this.load.audio('select1', 'sound/bean_select1.wav');
-        this.load.audio('select2', 'sound/bean_select2.wav');
-
-        // load button confirm sound
-        this.load.audio('confirm', 'sound/bean_confirm.wav');
-
         // Load Bean workers
         this.load.spritesheet('bean3_idle', 'Bean Worker/bean_floor3_idle.png', {frameWidth: 560, frameHeight: 560, startFrame: 0, endFrame: 3});
         this.load.spritesheet('bean3_toss', 'Bean Worker/bean_floor3_toss.png', {frameWidth: 560, frameHeight: 560, startFrame: 0, endFrame: 4});
@@ -57,6 +50,7 @@ class Play extends Phaser.Scene {
     }
         
     create() {
+
         this.sound.stopAll();
         money = 0;
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);

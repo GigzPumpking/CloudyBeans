@@ -9,6 +9,14 @@ class Title extends Phaser.Scene {
         this.load.image('titlebackground', './titlebackground.jpg');
         this.load.audio('title', 'sound/bean_title.mp3');
         this.load.audio('credits', 'sound/bean_credits.mp3');
+
+        // load button hover sounds
+        this.load.audio('select1', 'sound/bean_select1.wav');
+        this.load.audio('select2', 'sound/bean_select2.wav');
+
+        // load button confirm sound
+        this.load.audio('confirm', 'sound/bean_confirm.wav');
+
     }
 
     create() {
