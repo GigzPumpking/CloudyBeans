@@ -22,15 +22,12 @@ class Title extends Phaser.Scene {
     }
 
     create() {
-        // place background
-        this.background = this.add.tileSprite(0, 0, 2160, 1620, 'titlebackground').setOrigin(0, 0);
-        this.background.scale /= 1.625;
+        var menu_sign = this.add.sprite(game.config.width/2,game.config.height/2,'titlebackground').setScale(0.7);
 
         let menuConfig = {
             fontFamily: 'Fantasy',
             fontSize: '35px',
-            backgroundColor: '#303030',
-            color: '#FFFFFF',
+            color: '#FF9E1A',
             align: 'right',
             padding: {
                 top: 5,
@@ -41,8 +38,7 @@ class Title extends Phaser.Scene {
         let smallConfig = {
             fontFamily: 'Fantasy',
             fontSize: '27px',
-            backgroundColor: '#303030',
-            color: '#FFFFFF',
+            color: '#FFF21A',
             align: 'left',
             padding: {
                 top: 5,
